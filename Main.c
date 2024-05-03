@@ -2,12 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Estrutura para representar um pixel RGB
 typedef struct {
     int R;
     int G;
     int B;
 } RGB;
 
+// Le um arquivo ppm e armazena os pixels em uma matriz
 RGB **lerArquivo(char nome[35], int *linhas, int *colunas) {
     // Caminho para a pasta de imagens
     char diretorio[] = "C:\\Users\\GOLD\\OneDrive\\Documentos\\T1_PBN\\imagens\\";
@@ -68,6 +70,7 @@ RGB **lerArquivo(char nome[35], int *linhas, int *colunas) {
     return matriz;
 }
 
+// Salva a matriz de pixels em um arquivo ppm
 void salvarArquivoPPM(char nome[], RGB **matriz, int linhas, int colunas) {
     // Caminho para a pasta onde deseja salvar as imagens
     char diretorioSalvar[] = "C:\\Users\\GOLD\\OneDrive\\Documentos\\T1_PBN\\imagens\\";
@@ -106,6 +109,7 @@ void salvarArquivoPPM(char nome[], RGB **matriz, int linhas, int colunas) {
     fclose(fp);
 }
 
+// Converte a imagem em tons cinzas
 void viraCinza(RGB **matriz, int linhas, int colunas) {
     for(int i = 0; i < linhas; i++) {
         for(int j = 0; j < colunas; j++) {
@@ -120,6 +124,7 @@ void viraCinza(RGB **matriz, int linhas, int colunas) {
     }
 }
 
+// Adiciona mais brilho na imagem
 void maisBrilho(RGB **matriz, int linhas, int colunas){
     for(int i = 0; i < linhas; i++) {
         for(int j = 0; j < colunas; j++) {
@@ -136,6 +141,7 @@ void maisBrilho(RGB **matriz, int linhas, int colunas){
     }
 }
 
+// Diminui os brilhos na imagem
 void menosBrilho(RGB **matriz, int linhas, int colunas){
     for(int i = 0; i < linhas; i++) {
         for(int j = 0; j < colunas; j++) {
@@ -152,6 +158,7 @@ void menosBrilho(RGB **matriz, int linhas, int colunas){
     }
 }
 
+// Deixa a imagem com aspecto mais velho
 void maisVelha(RGB **matriz, int linhas, int colunas){
     for(int i = 0; i < linhas; i++) {
         for(int j = 0; j < colunas; j++) {
@@ -168,6 +175,7 @@ void maisVelha(RGB **matriz, int linhas, int colunas){
     }
 }
 
+// Transforma a imagem em efeito raio-x
 void negativo(RGB **matriz, int linhas, int colunas){
     for(int i = 0; i < linhas; i++) {
         for(int j = 0; j < colunas; j++) {
@@ -184,6 +192,7 @@ void negativo(RGB **matriz, int linhas, int colunas){
     }
 }
 
+// Gira a imagem em -90 graus, sentido horario
 void rotaciona(RGB ***matriz, int *linhas, int *colunas){
     // Transpor a matriz
     RGB **transposta = (RGB **)malloc(*colunas * sizeof(RGB *));
@@ -213,7 +222,6 @@ void rotaciona(RGB ***matriz, int *linhas, int *colunas){
     // Atribuir a matriz transposta à matriz original
     *matriz = transposta;
 }
-
 
 int main() {
     char nomeArquivo[25], nomeArquivoNovo[25];
