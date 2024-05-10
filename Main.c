@@ -17,22 +17,24 @@ RGB **lerArquivo(char nome[35], int *linhas, int *colunas) {
     strcpy(caminhoCompleto, diretorio); 
     strcat(caminhoCompleto, nome); 
 
+    //abre o arquivo e verifica se deu certo
     FILE *fp;
     fp = fopen(caminhoCompleto, "r");
     if (fp == NULL) {
         printf("Erro ao abrir o arquivo.\n");
-        return NULL;
+        return NULL; 
     }
 
+    // lê o tipo de imagem 
     char formato[3];
-    fscanf(fp, "%s", formato); // lê o tipo de imagem P3 (color), P2 (P&B) 
+    fscanf(fp, "%s", formato); 
     if (formato[0] != 'P' || (formato[1] != '3' && formato[1] != '2')) {
         printf("Formato de arquivo inválido.\n");
         fclose(fp);
         return NULL;
     }
-
-    fscanf(fp, "%d %d", colunas, linhas); // lê o tamanho da matriz  
+    // lê o tamanho da matriz
+    fscanf(fp, "%d %d", colunas, linhas);   
     
     // Criar uma matriz para armazenar os pixels como uma sequência de structs RGB
     RGB **matriz = (RGB **)malloc(*linhas * sizeof(RGB *));
@@ -257,7 +259,7 @@ int main() {
             printf("\n    4 - Imagem tons de cinza - diminuir o brilho");
             printf("\n    5 - Rotacionar a imagem colorida -90");
             printf("\n    6 - Imagem colorida - envelhecimento da imagem");
-            printf("\n    7 - Voltar e escolher outra imagem.");
+            printf("\n    7 - Voltar e escolher outra imagem.\n");
             scanf("%d", &opcao);
 
             switch (opcao) {
